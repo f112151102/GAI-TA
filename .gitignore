@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Flask or Django environment
+instance/
+.env
+.env.*
+
+# VSCode or other editors
+.vscode/
+*.code-workspace
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Virtual environment
+venv/
+env/
+
+# Logs
+*.log
+
+# Docker
+*.pid
+*.db
+*.sqlite3
+*.sqlite
+docker-compose.override.yml
+
+# Pytest
+htmlcov/
+.coverage
+.cache/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Migrations
+migrations/

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>ChatGPT 對話頁面</title>
+  <style>
+    body { font-family: Arial; margin: 30px; }
+    #chatbox { border: 1px solid #ccc; padding: 15px; height: 300px; overflow-y: auto; background: #f9f9f9; }
+    .user { font-weight: bold; color: #1a73e8; }
+    .bot { color: #0b8043; margin-bottom: 10px; }
+    #message { width: 100%; padding: 10px; margin-top: 10px; }
+    button { padding: 10px 20px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <h2>💬 ChatGPT 聊天機器人</h2>
+
+  <div id="chatbox"></div>
+
+  <textarea id="message" rows="3" placeholder="請輸入你的問題..."></textarea><br>
+  <button onclick="sendMessage()">送出</button>
+  <button onclick="sendMessage()">回報錯誤</button>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("message");
+      const chatbox = document.getElementById("chatbox");
+      const userText = input.value.trim();
+      if (userText === "") return;
+
+      chatbox.innerHTML += `<p class='user'>🙋‍♂️ 你：${userText}</p>`;
+      input.value = "";
+
+      fetch("/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userText })
+      })
+      .then(res => res.json())
+      .then(data => {
+        chatbox.innerHTML += `<p class='bot'>🤖 GPT：${data.reply}</p>`;
+        chatbox.scrollTop = chatbox.scrollHeight;
+      })
+      .catch(err => {
+        chatbox.innerHTML += `<p class='bot'>❗ 錯誤：無法取得回應</p>`;
+      });
+    }
+  </script>
+
+  <script>
+     function sendWangMessage()
+  </script>
+
+</body>
+</html>
